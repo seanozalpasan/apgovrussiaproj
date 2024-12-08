@@ -1,0 +1,1 @@
+This is for the Mid Term Paper for AP Comp Gov.
