@@ -69,8 +69,13 @@ def plot_predictions(data, prediction_results):
         'f8': 'Criminal Justice'
     }
     
-    fig = make_subplots(rows=4, cols=2, 
-                       subplot_titles=[f'Factor {i}: {factor_names[f"f{i}"]}' for i in range(1, 9)])
+    fig = make_subplots(
+        rows=4, 
+        cols=2, 
+        subplot_titles=[f'Factor {i}: {factor_names[f"f{i}"]}' for i in range(1, 9)],
+        vertical_spacing=0.08,
+        horizontal_spacing=0.08
+    )
     
     for i, factor in enumerate([f'f{i}' for i in range(1, 9)]):
         row = (i // 2) + 1
@@ -123,7 +128,9 @@ def plot_predictions(data, prediction_results):
         height=1500, 
         width=1200, 
         title_text='WJP Factors Predictions',
-        showlegend=False
+        showlegend=False,
+        template="plotly_white",
+        margin=dict(t=100, b=50, l=50, r=50)
     )
     return fig
 

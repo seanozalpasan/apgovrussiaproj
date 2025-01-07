@@ -55,9 +55,20 @@ def make_factor_dashboard(data):
         rows=4, 
         cols=2, 
         subplot_titles=factor_labels,
-        vertical_spacing=0.15,
-        horizontal_spacing=0.15
+        vertical_spacing=0.08,
+        horizontal_spacing=0.08
     )
+
+    # Calculate y-axis ranges for each factor
+    y_ranges = {}
+    for factor_key in ['f1', 'f2', 'f3', 'f4', 'f5', 'f6', 'f7', 'f8']:
+        min_val = min(data[factor_key])
+        max_val = max(data[factor_key])
+        padding = (max_val - min_val) * 0.2
+        y_ranges[factor_key] = [
+            max(0, min_val - padding),
+            min(1, max_val + padding)
+        ]
 
     for i, factor_key in enumerate(['f1', 'f2', 'f3', 'f4', 'f5', 'f6', 'f7', 'f8']):
         row_num = (i // 2) + 1
@@ -78,7 +89,13 @@ def make_factor_dashboard(data):
             col=col_num
         )
         
-        dashboard.update_yaxes(range=[-0.05, 1.05], row=row_num, col=col_num)
+        # Set y-axis range based on data
+        dashboard.update_yaxes(
+            range=y_ranges[factor_key],
+            row=row_num,
+            col=col_num,
+            tickformat='.2f'
+        )
 
     # Make it look nice
     dashboard.update_layout(
