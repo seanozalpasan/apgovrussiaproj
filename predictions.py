@@ -58,19 +58,19 @@ def predict_future_trends(data, years_ahead=2):
     }
 
 def plot_predictions(data, prediction_results):
-    fig = make_subplots(rows=4, cols=2, 
-                       subplot_titles=[f'Factor {i}: Predictions' for i in range(1, 9)])
+    factor_names = {
+        'f1': 'Constraints on Government Powers',
+        'f2': 'Absence of Corruption',
+        'f3': 'Open Government',
+        'f4': 'Fundamental Rights',
+        'f5': 'Order and Security',
+        'f6': 'Regulatory Enforcement',
+        'f7': 'Civil Justice',
+        'f8': 'Criminal Justice'
+    }
     
-    factor_names = [
-        'Constraints on Government Powers',
-        'Absence of Corruption',
-        'Open Government',
-        'Fundamental Rights',
-        'Order and Security',
-        'Regulatory Enforcement',
-        'Civil Justice',
-        'Criminal Justice'
-    ]
+    fig = make_subplots(rows=4, cols=2, 
+                       subplot_titles=[f'Factor {i}: {factor_names[f"f{i}"]}' for i in range(1, 9)])
     
     for i, factor in enumerate([f'f{i}' for i in range(1, 9)]):
         row = (i // 2) + 1
