@@ -31,7 +31,7 @@ def get_wjp_data(csv_file):
     
     return processed_data
 
-def predict_future_trends(data, years_ahead=2):
+def predict_future_trends(data, years_ahead):
     year_nums = np.array([int(year.split('-')[0]) for year in data['year']])
     future_years = np.arange(year_nums[0], year_nums[-1] + years_ahead + 1)
     
@@ -136,7 +136,7 @@ def plot_predictions(data, prediction_results):
 
 def main():
     wjp_data = get_wjp_data('RussianFederation.csv')
-    predictions = predict_future_trends(wjp_data, years_ahead=5)
+    predictions = predict_future_trends(wjp_data, 6)
     prediction_plot = plot_predictions(wjp_data, predictions)
     prediction_plot.show()
 
